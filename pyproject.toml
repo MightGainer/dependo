@@ -1,10 +1,12 @@
 [project]
 name = "dependo"
-version = "1.0.2"
+version = "1.0.3"
 description = "A lightweight, fully-typed dependency injection framework for Python 3.10+ providing scoped, transient, and singleton lifetimes."
 authors = [
     { name = "MightGainer", email = "yukyitchow@gmail.com" }
 ]
+homepage = "https://github.com/MightGainer/dependo/"
+repository = "https://github.com/MightGainer/dependo/"
 
 license = { text = """MIT License
 
