@@ -3,7 +3,7 @@ name = "dependo"
 version = "1.0.0"
 description = "A lightweight, fully-typed dependency injection framework for Python 3.10+ providing scoped, transient, and singleton lifetimes."
 authors = [
-    { name = "MightGainer", email = "yura1703@yandex.ru" }
+    { name = "MightGainer", email = "yukyitchow@gmail.com" }
 ]
 
 license = { text = """MIT License

@@ -441,7 +441,7 @@ class DocumentProcessor:
         self.s3_storage.save(content)
 ```
 ---
-### 🔸 6. `get_services()` for all implementations
+### 🔸 7. `get_services()` for all implementations
 
 If you have multiple registrations of the same type (without names),
 
@@ -806,9 +806,6 @@ def login(user: str, auth: AuthService):
 
 Here, Dependo injects your dependencies while aiogram injects the `Message` object.
 
-Perfect — below you’ll find **pure example sections only**, rewritten to look like **real‑life production code** for each major framework, plus idiomatic base‑level usage.  
-I skipped all documentation and prose — just working, realistic code examples that a developer can drop into an app.
-
 ---
 
 ## 🤖 aiogram integration
@@ -905,7 +902,7 @@ poetry run black dependo/
 
 ## 📄 License
 
-MIT License © 2025 **Sokolov Yury (MightGainer)** — [yura1703@yandex.ru](mailto:yura1703@yandex.ru)
+MIT License © 2025 **Sokolov Yury (MightGainer)** — [yukyitchow@gmail.com](mailto:yukyitchow@gmail.com)
 
 ---
 
