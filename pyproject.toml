@@ -49,6 +49,9 @@ dependencies = []
 packages = [
     { include = "dependo" }
 ]
+include = [
+    { path = "dependo/py.typed" }
+]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
