@@ -1,0 +1,63 @@
+[project]
+name = "dependo"
+version = "1.0.0"
+description = "A lightweight, fully-typed dependency injection framework for Python 3.10+ providing scoped, transient, and singleton lifetimes."
+authors = [
+    { name = "MightGainer", email = "yura1703@yandex.ru" }
+]
+
+license = { text = """MIT License
+
+Copyright (c) 2025 Sokolov Yury
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""}
+
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["dependency-injection", "di", "python", "ioc", "framework"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed"
+]
+
+dependencies = []
+
+[tool.poetry]
+packages = [
+    { include = "dependo" }
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+black = "^25.1.0"
+
+[tool.black]
+line-length = 130
+exclude = '''/(\.venv|\.git|migrations)/'''
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
