@@ -176,9 +176,23 @@ class ServiceCollection:
             for desc in lst:
                 impl = desc.implementation
                 if isclass(impl):
-                    target = impl.__init__
-                    sig = signature(target)
-                    hints = get_type_hints(target, globalns=target.__globals__)
+                    target = getattr(impl, "__init__", None)
+                    if target is None:
+                        continue
+
+                    # Safely compute signature and type hints
+                    try:
+                        sig = signature(target)
+                    except Exception:
+                        # If we cannot inspect it, skip (no annotations we can use)
+                        continue
+
+                    # Try to get type hints; fall back to raw __annotations__; else empty
+                    try:
+                        globalns = getattr(target, "__globals__", getattr(impl, "__dict__", {}))
+                        hints = get_type_hints(target, globalns=globalns)
+                    except Exception:
+                        hints = getattr(target, "__annotations__", {}) or {}
 
                     for name, param in sig.parameters.items():
                         if name == "self":

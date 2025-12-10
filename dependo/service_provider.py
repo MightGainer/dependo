@@ -442,18 +442,10 @@ class ServiceProvider:
     # ======================================================
 
     def _get_dependencies(self, implementation: Any) -> dict[str, Type]:
-        """
-        Analyze constructor or factory function for type-hinted dependencies.
-
-        Returns
-        -------
-        dict[str, Type]
-            Mapping of parameter names to annotated types.
-        """
         deps: dict[str, Type] = {}
         target = None
         if inspect.isclass(implementation):
-            target = implementation.__init__
+            target = getattr(implementation, "__init__", None)
         elif isinstance(implementation, types.FunctionType):
             target = implementation
         elif isinstance(implementation, types.MethodType):
@@ -462,8 +454,17 @@ class ServiceProvider:
         if target is None:
             return deps
 
-        sig = inspect.signature(target)
-        hints = get_type_hints(target, globalns=target.__globals__)
+        # If the target is a built-in wrapper (no __globals__/__annotations__), skip
+        try:
+            sig = inspect.signature(target)
+        except Exception:
+            return deps
+
+        # get_type_hints may fail for builtins; fall back to __annotations__ or {}.
+        try:
+            hints = get_type_hints(target, globalns=getattr(target, "__globals__", getattr(implementation, "__dict__", {})))
+        except Exception:
+            hints = getattr(target, "__annotations__", {}) or {}
 
         for pname, param in sig.parameters.items():
             if pname == "self":
