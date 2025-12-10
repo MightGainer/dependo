@@ -50,6 +50,9 @@ packages = [
     { include = "dependo" }
 ]
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
 black = "^25.1.0"
