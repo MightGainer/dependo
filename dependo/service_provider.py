@@ -597,7 +597,11 @@ class ServiceProvider:
         """
         skip_params = skip_params or set()
         sig = inspect.signature(func)
-        hints = get_type_hints(func, globalns=func.__globals__)
+        try:
+            globalns = getattr(func, "__globals__", {})
+            hints = get_type_hints(func, globalns=globalns)
+        except Exception:
+            hints = getattr(func, "__annotations__", {}) or {}
 
         bound = sig.bind_partial(*args, **kwargs)
         provided = set(bound.arguments.keys()) - skip_params
