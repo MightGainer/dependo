@@ -166,6 +166,21 @@ class ServiceProvider:
         if not instances:
             raise ServiceNotRegisteredException(service_type)
         return instances[-1]
+    
+    def try_get_service(self, service_type: Type, name: str | None = None) -> Any | None:
+        """
+        Retrieve a single instance of a registered service or None if the service type is not registered.
+
+        Returns
+        -------
+        Any
+            The resolved instance or None if the service type is not registered.
+        """
+        instances = self._resolve_all(service_type, name=name, scope=None)
+        if not instances:
+            return None
+
+        return instances[-1]
 
     def get_services(self, service_type: Type, name: str | None = None) -> List[Any]:
         """Return all registered implementations for a given type."""
